@@ -6,14 +6,14 @@ export function getToken() {
 }
 
 export async function apiFetch<T>(path: string, options: RequestInit = {}, auth = false): Promise<T> {
-  const headers: HeadersInit = {
-    "Content-Type": "application/json",
-    ...(options.headers || {}),
-  };
+  const headers = new Headers(options.headers || {});
+  if (!headers.has("Content-Type")) {
+    headers.set("Content-Type", "application/json");
+  }
 
   if (auth) {
     const token = getToken();
-    if (token) headers.Authorization = `Bearer ${token}`;
+    if (token) headers.set("Authorization", `Bearer ${token}`);
   }
 
   const response = await fetch(`${API_URL}${path}`, { ...options, headers, cache: "no-store" });
