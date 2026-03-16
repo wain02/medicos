@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-med-bg text-med-text antialiased;
+}
+
+.card {
+  @apply rounded-xl bg-white shadow-sm border border-slate-200;
+}
+
+.btn {
+  @apply rounded-lg px-4 py-2 text-sm font-medium transition;
+}
+
+.btn-primary {
+  @apply btn bg-med-primary text-white hover:bg-[#173d5f];
+}
+
+.btn-secondary {
+  @apply btn bg-slate-100 text-slate-800 hover:bg-slate-200;
+}
+
+.input {
+  @apply w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-med-accent;
+}

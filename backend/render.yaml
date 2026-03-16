@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: medicos-api
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_NAME
+        value: Medicos API
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "720"
+      - key: ADMIN_USERNAME
+        value: doctor
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_FULL_NAME
+        value: Dr. Demo
+      - key: DATABASE_URL
+        value: sqlite:///./medicos.db
+      - key: TIMEZONE
+        value: America/Argentina/Buenos_Aires
+      - key: SLOT_MINUTES
+        value: "30"
+      - key: CORS_ORIGINS
+        sync: false
